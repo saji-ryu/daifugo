@@ -1,2 +1,4 @@
 .env
+.fusebox
 node_modules
+dist
