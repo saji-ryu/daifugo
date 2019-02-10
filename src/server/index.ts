@@ -5,6 +5,10 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { createServer } from "http";
 import socketIO from "socket.io";
+import passport from "passport";
+import { Strategy } from "passport-twitter";
+
+import { auth as routeAuth } from "./routes";
 
 import _debug from "debug";
 import session from "express-session";
@@ -18,8 +22,29 @@ const sessionMiddleware = session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 30 * 60 * 1000,
+    maxAge: 2 * 24 * 60 * 60 * 1000,
   },
+});
+
+passport.use(
+  new Strategy(
+    {
+      consumerKey: process.env.TWITTER_CONSUMER_KEY,
+      consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+      callbackURL: "/auth/twitter/callback",
+    },
+    (token, tokenSecret, profile, cb) => {
+      return cb(null, profile);
+    }
+  )
+);
+
+passport.serializeUser((user, cb) => {
+  cb(null, user);
+});
+
+passport.deserializeUser((obj, cb) => {
+  cb(null, obj);
 });
 
 const app = express();
@@ -32,8 +57,14 @@ const main = async () => {
     pingTimeout: 15000,
     pingInterval: 13000,
   };
+
   app.set("views", "views/");
-  app.set("view engine", "pug");
+  app.set("view engine", "html");
+
+  app.use(sessionMiddleware);
+
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(express.static("public/"));
   app.use(bodyParser.json());
   app.use(
@@ -45,13 +76,15 @@ const main = async () => {
 
   app.use(cors());
   app.use(express.static("public"));
-  app.use(sessionMiddleware);
+
+  app.use("/auth", routeAuth);
+
   const io = socketIO(server, options);
   io.use((socket, next) => {
     sessionMiddleware(socket.request, socket.request.res || {}, next);
   });
   server.listen(PORT, async () => {
-    debug(`Yurucomi server listen on :${PORT}`);
+    debug(`daifugo server listen on :${PORT}`);
     debug(`process.env.NODE_ENV=${String(process.env.NODE_ENV)}`);
   });
 };
