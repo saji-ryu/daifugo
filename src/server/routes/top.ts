@@ -1,11 +1,11 @@
 import express from "express";
 import _debug from "debug";
-import sessionCheck from "../utils/sessionCheck";
+import autoLogin from "../utils/autoLogin";
 
 const router = express.Router();
-const debug = _debug("server:route:home");
+const debug = _debug("server:route:top");
 
-router.get("/", sessionCheck, (req, res) => {
+router.get("/", autoLogin, (req, res) => {
   res.render("index");
 });
 

@@ -11,10 +11,10 @@ router.get(
   "/twitter/callback",
   passport.authenticate("twitter", { failureRedirect: "/" }),
   (req, res) => {
-    debug(`auth success : ${req.user.id}`);
+    debug(`auth success : { id:${req.user.id}, name:${req.user.username} }`);
     req.session.userName = req.user.username;
     req.session.userId = req.user.id;
-    res.redirect("/");
+    res.redirect("/home");
   }
 );
 

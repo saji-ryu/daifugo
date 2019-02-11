@@ -8,7 +8,7 @@ import socketIO from "socket.io";
 import passport from "passport";
 import { Strategy } from "passport-twitter";
 
-import { auth as routeAuth } from "./routes";
+import { routeAuth, routeHome, routeTop } from "./routes";
 
 import _debug from "debug";
 import session from "express-session";
@@ -59,7 +59,7 @@ const main = async () => {
   };
 
   app.set("views", "views/");
-  app.set("view engine", "html");
+  app.set("view engine", "ejs");
 
   app.use(sessionMiddleware);
 
@@ -78,6 +78,8 @@ const main = async () => {
   app.use(express.static("public"));
 
   app.use("/auth", routeAuth);
+  app.use("/home", routeHome);
+  app.use("/", routeTop);
 
   const io = socketIO(server, options);
   io.use((socket, next) => {
