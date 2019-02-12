@@ -1,2 +1,3 @@
-export { default as Top } from "./Top";
-export { default as Home } from "./Home";
+import Home from "./Home";
+import Top from "./Top";
+export { Home, Top };

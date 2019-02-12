@@ -16,7 +16,7 @@ import session from "express-session";
 const debug = _debug("server:main");
 dotenv.load();
 
-const PORT: number = Number(process.env.PORT) || 3000;
+const PORT: number = Number(process.env.PORT) || 3001;
 const sessionMiddleware = session({
   secret: "keyboard cat",
   resave: false,

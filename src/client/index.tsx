@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { Top, Home } from "./components/pages";
+import { Home, Top } from "./components/pages";
 
 const Root = () => (
   <BrowserRouter>

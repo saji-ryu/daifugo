@@ -1,31 +1,27 @@
-const { FuseBox, QuantumPlugin, WebIndexPlugin } = require("fuse-box");
-const plugins = [];
-
-if (process.env.NODE_ENV === "production") {
-  plugins.push(
-    QuantumPlugin({
-      uglify: true,
-      treeshake: true,
-      bakeApiIntoBundle: "index",
-    })
-  );
-}
+const { FuseBox, StyledComponentsPlugin, QuantumPlugin } = require("fuse-box");
 
 const fuse = FuseBox.init({
+  target: "browser@es6",
   homeDir: "src",
+  output: "public/$name.js",
   sourceMaps: true,
-  target: "browser@es5",
-  output: "./public/$name.js",
-  plugins,
+  plugins: [
+    //StyledComponentsPlugin(),
+    process.env.NODE_ENV === "production" &&
+      QuantumPlugin({
+        treeshake: true,
+        uglify: true,
+        bakeApiIntoBundle: "bundle",
+      }),
+  ],
 });
 
-if (process.env.NODE_ENV == "development") {
+if (process.env.NODE_ENV != "production") {
   fuse
-    .bundle("index")
-    .instructions(`> client/index.tsx`)
-    .watch("client/**");
-  fuse.run();
+    .bundle("bundle")
+    .instructions(" > client/index.tsx")
+    .watch();
 } else {
-  fuse.bundle("index").instructions(`> client/index.tsx`);
-  fuse.run();
+  fuse.bundle("bundle").instructions(" > client/index.tsx");
 }
+fuse.run();
