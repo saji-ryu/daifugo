@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "../css/style.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import { Top, Home } from "./components/pages";
 
 const Root = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/:groupName" component={Main} />
+      <Route exact path="/" component={Top} />
+      <Route path="/home" component={Home} />
     </Switch>
   </BrowserRouter>
 );

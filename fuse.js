@@ -1,5 +1,4 @@
 const { FuseBox, QuantumPlugin, WebIndexPlugin } = require("fuse-box");
-// const plugins = [WebIndexPlugin()];
 const plugins = [];
 
 if (process.env.NODE_ENV === "production") {
