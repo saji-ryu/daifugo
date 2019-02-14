@@ -1,3 +1,2 @@
-import Home from "./Home";
-import Top from "./Top";
-export { Home, Top };
+export { default as Home } from "./Home";
+export { default as Top } from "./Top";
