@@ -1,15 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const SignInButton = () => (
+type Props = {
+  toHome: () => void;
+};
+
+const SignInButton = ({ toHome }: Props) => (
   <Wrapper>
-    <button
-      onClick={() => {
-        window.location.href = "./auth/twitter";
-      }}
-    >
-      {"twitter login"}
-    </button>
+    <button onClick={toHome}>{"to home"}</button>
   </Wrapper>
 );
 

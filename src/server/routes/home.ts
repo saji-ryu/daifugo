@@ -1,6 +1,6 @@
 import express from "express";
 import _debug from "debug";
-import sessionCheck from "../utils/sessionCheck";
+import { sessionCheck } from "../middlewares";
 
 const router = express.Router();
 const debug = _debug("server:route:home");

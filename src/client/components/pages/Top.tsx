@@ -2,12 +2,14 @@ import React from "react";
 import { SignInButton } from "../parts";
 import styled from "@emotion/styled";
 
-type Props = {};
+type Props = {
+  toHome: () => void;
+};
 
-const Top = (props: Props) => (
+const Top = ({ toHome }: Props) => (
   <Wrapper>
     <Title>{"Top"}</Title>
-    <SignInButton />
+    <SignInButton toHome={toHome} />
   </Wrapper>
 );
 

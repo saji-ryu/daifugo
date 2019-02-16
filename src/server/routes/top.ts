@@ -1,6 +1,6 @@
 import express from "express";
 import _debug from "debug";
-import autoLogin from "../utils/autoLogin";
+import { autoLogin } from "../middlewares";
 
 const router = express.Router();
 const debug = _debug("server:route:top");
