@@ -5,10 +5,10 @@ const SignInButton = () => (
   <Wrapper>
     <button
       onClick={() => {
-        window.location.href = "./auth/twitter";
+        window.location.href = "http://127.0.0.1:3001/auth/twitter";
       }}
     >
-      {"twitter login"}
+      {"to home"}
     </button>
   </Wrapper>
 );

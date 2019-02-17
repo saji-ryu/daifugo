@@ -8,7 +8,7 @@ import socketIO from "socket.io";
 import passport from "passport";
 import { Strategy } from "passport-twitter";
 
-import { routeAuth, routeHome, routeTop } from "./routes";
+import { routeAuth, routeSession, routeTop } from "./routes";
 
 import _debug from "debug";
 import session from "express-session";
@@ -78,7 +78,7 @@ const main = async () => {
   app.use(express.static("public"));
 
   app.use("/auth", routeAuth);
-  app.use("/home", routeHome);
+  app.use("/session", routeSession);
   app.use("/", routeTop);
 
   const io = socketIO(server, options);

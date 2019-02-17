@@ -1,16 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
+import configureStore from "./store";
 
-import { Home, Top } from "./components/pages";
+import App from "./containers/AppContainer";
+
+const store = configureStore();
 
 const Root = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={Top} />
-      <Route path="/home" component={Home} />
-    </Switch>
-  </BrowserRouter>
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
 
 ReactDOM.render(<Root />, document.getElementById("root"));
