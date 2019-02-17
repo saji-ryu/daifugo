@@ -8,6 +8,7 @@ const debug = _debug("server:route:session");
 router.get("/", (req, res) => {
   if (req.session) {
     if (req.session.userName && req.session.userId) {
+      debug(`session found { id:${req.session.userId}, name:${req.session.userName} }`);
       const resData: SessionInfo = {
         userName: req.session.userName,
         userId: req.session.userId,
@@ -17,6 +18,7 @@ router.get("/", (req, res) => {
       };
       res.send(resData);
     } else {
+      debug(`no session found`);
       const resData: SessionInfo = {
         userName: "",
         userId: "",
@@ -26,6 +28,7 @@ router.get("/", (req, res) => {
       res.send(resData);
     }
   } else {
+    debug(`no session found`);
     const resData: SessionInfo = {
       userName: "",
       userId: "",

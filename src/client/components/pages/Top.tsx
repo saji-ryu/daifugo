@@ -8,7 +8,6 @@ type Props = {
 
 const Top = ({ login }: Props) => {
   useEffect(() => {
-    // Update the document title using the browser API
     login();
   });
   return (
