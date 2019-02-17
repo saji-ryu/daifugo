@@ -14,7 +14,7 @@ router.get(
     debug(`auth success : { id:${req.user.id}, name:${req.user.username} }`);
     req.session.userName = req.user.username;
     req.session.userId = req.user.id;
-    res.redirect("/home");
+    res.redirect("/");
   }
 );
 

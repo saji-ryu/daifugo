@@ -40,5 +40,8 @@ const reducer = (state: State = initialState, action: Action): State => {
 export const toHome = (): Action => ({
   type: TO_HOME,
 });
+export const toTop = (): Action => ({
+  type: TO_TOP,
+});
 
 export default reducer;

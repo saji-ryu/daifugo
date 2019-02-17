@@ -1,17 +1,16 @@
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
 import { Top } from "../components/pages";
-import { ReduxState } from "../interfaces";
-import { toHome } from "../modules/navigation";
+import { ReduxState, ThunkDispatch } from "../interfaces";
+import login from "../usecases/login";
 
 const mapStateToProps = (state: ReduxState) => {
   return {};
 };
 
-function mapDispatchToProps(dispatch: Dispatch) {
+function mapDispatchToProps(dispatch: ThunkDispatch) {
   return {
-    toHome: () => {
-      dispatch(toHome());
+    login: () => {
+      dispatch(login());
     },
   };
 }
