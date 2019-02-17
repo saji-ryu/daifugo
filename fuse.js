@@ -3,7 +3,7 @@ const { FuseBox, StyledComponentsPlugin, QuantumPlugin } = require("fuse-box");
 const fuse = FuseBox.init({
   target: "browser@es6",
   homeDir: "src",
-  output: "public/$name.js",
+  output: "public/js/$name.js",
   sourceMaps: true,
   plugins: [
     //StyledComponentsPlugin(),
