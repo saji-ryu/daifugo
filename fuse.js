@@ -1,4 +1,4 @@
-const { FuseBox, StyledComponentsPlugin, QuantumPlugin } = require("fuse-box");
+const { FuseBox, QuantumPlugin } = require("fuse-box");
 
 const fuse = FuseBox.init({
   target: "browser@es6",
@@ -6,7 +6,6 @@ const fuse = FuseBox.init({
   output: "public/js/$name.js",
   sourceMaps: true,
   plugins: [
-    //StyledComponentsPlugin(),
     process.env.NODE_ENV === "production" &&
       QuantumPlugin({
         treeshake: true,
@@ -16,7 +15,7 @@ const fuse = FuseBox.init({
   ],
 });
 
-if (process.env.NODE_ENV != "production") {
+if (process.env.NODE_ENV !== "production") {
   fuse
     .bundle("bundle")
     .instructions(" > client/index.tsx")

@@ -8,12 +8,14 @@ import socketIO from "socket.io";
 import passport from "passport";
 import { Strategy } from "passport-twitter";
 
-import { routeAuth, routeSession, routeTop } from "./routes";
+import { routeAuth, routeSession, routeTop, routeDebug } from "./routes";
+
+import socketConnecter from "./socketConnecter";
 
 import _debug from "debug";
 import session from "express-session";
 
-const debug = _debug("server:main");
+const debug = _debug("main");
 dotenv.load();
 
 const PORT: number = Number(process.env.PORT) || 3001;
@@ -79,12 +81,14 @@ const main = async () => {
 
   app.use("/auth", routeAuth);
   app.use("/session", routeSession);
+  app.use("/debug", routeDebug);
   app.use("/", routeTop);
 
   const io = socketIO(server, options);
   io.use((socket, next) => {
     sessionMiddleware(socket.request, socket.request.res || {}, next);
   });
+  socketConnecter(io);
   server.listen(PORT, async () => {
     debug(`daifugo server listen on :${PORT}`);
     debug(`process.env.NODE_ENV=${String(process.env.NODE_ENV)}`);

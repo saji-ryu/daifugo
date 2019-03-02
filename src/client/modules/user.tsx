@@ -7,7 +7,7 @@ type Action = {
   type:
     | "daifugo/user/SET_USER_INFO"
     | "daifugo/user/REMOVE_USER_INFO"
-    | "daifugo/user/UPDATE_TIMEOT";
+    | "daifugo/user/UPDATE_TIMEOUT";
   data?: { [key: string]: any };
 };
 

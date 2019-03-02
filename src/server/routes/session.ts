@@ -2,13 +2,23 @@ import express from "express";
 import _debug from "debug";
 import { SessionInfo } from "../../interfaces";
 
+import createUser from "../usecases/createUser";
+
 const router = express.Router();
-const debug = _debug("server:route:session");
+const debug = _debug("route:session");
 
 router.get("/", (req, res) => {
   if (req.session) {
     if (req.session.userName && req.session.userId) {
-      debug(`session found { id:${req.session.userId}, name:${req.session.userName} }`);
+      debug(
+        `session found { id:${req.session.userId}, name:${
+          req.session.userName
+        } }`
+      );
+      createUser({
+        userName: req.session.userName,
+        userId: req.session.userId,
+      });
       const resData: SessionInfo = {
         userName: req.session.userName,
         userId: req.session.userId,
