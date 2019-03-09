@@ -1,11 +1,17 @@
 // Redux
 import { State as NavigationState } from "../modules/navigation";
+import { State as UserState } from "../modules/user";
+import { State as RootState } from "../modules/root";
 import { Action, Dispatch } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
 export type ReduxState = {
   navigation: NavigationState;
+  user: UserState;
+  root: RootState;
 };
+
+export type Socket = SocketIOClient.Socket;
 
 export type ThunkDispatch = ThunkDispatch<ReduxState, {}, Action>;
 

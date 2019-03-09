@@ -4,14 +4,20 @@ export type State = {
 };
 
 type Action = {
-  type: "daifugo/navigation/TO_HOME" | "daifugo/navigation/TO_TOP";
+  type:
+    | "daifugo/navigation/TO_HOME"
+    | "daifugo/navigation/TO_TOP"
+    | "daifugo/navigation/TO_ROOT"
+    | "daifugo/navigation/TO_ROOM";
 };
 
-type PageName = "Top" | "Home";
+type PageName = "Top" | "Home" | "Root" | "Room";
 
 // action types
 const TO_HOME = "daifugo/navigation/TO_HOME";
 const TO_TOP = "daifugo/navigation/TO_TOP";
+const TO_ROOM = "daifugo/navigation/TO_ROOM";
+const TO_ROOT = "daifugo/navigation/TO_ROOT";
 
 // initial state
 const initialState: State = { currentPage: "Top", previousPage: "Top" };
@@ -29,6 +35,16 @@ const reducer = (state: State = initialState, action: Action): State => {
         currentPage: "Top",
         previousPage: state.currentPage,
       });
+    case TO_ROOT:
+      return Object.assign({}, state, {
+        currentPage: "Root",
+        previousPage: state.currentPage,
+      });
+    case TO_ROOM:
+      return Object.assign({}, state, {
+        currentPage: "Room",
+        previousPage: state.currentPage,
+      });
     default:
       console.log("first");
       console.log(state);
@@ -42,6 +58,9 @@ export const toHome = (): Action => ({
 });
 export const toTop = (): Action => ({
   type: TO_TOP,
+});
+export const toRoot = (): Action => ({
+  type: TO_ROOT,
 });
 
 export default reducer;

@@ -13,7 +13,7 @@ const login = (): ThunkAction<ReduxState> => async (
   );
   if (res.data.auth) {
     await dispatch(
-      setUserInfo({ name: res.data.userName, id: res.data.userId })
+      setUserInfo({ userName: res.data.userName, userId: res.data.userId })
     );
     await dispatch(toHome());
   } else {

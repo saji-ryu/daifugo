@@ -2,10 +2,12 @@ import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
 import navigationReducer from "./modules/navigation";
 import userReducer from "./modules/user";
+import rootReducer from "./modules/root";
 
 const reducers = combineReducers({
   navigation: navigationReducer,
   user: userReducer,
+  root: rootReducer,
 });
 const middlewares = [thunk];
 const composeEnhancers =
