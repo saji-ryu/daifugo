@@ -9,9 +9,9 @@ const mapStateToProps = (state: ReduxState) => {
   };
 };
 
-function mapDispatchToProps(dispatch: Dispatch) {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {};
-}
+};
 
 export default connect(
   mapStateToProps,

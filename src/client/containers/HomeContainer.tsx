@@ -2,19 +2,19 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { Home } from "../components/pages";
 import { ReduxState } from "../interfaces";
-import { toRoot } from "../modules/navigation";
+import { toSpace } from "../modules/navigation";
 
 const mapStateToProps = (state: ReduxState) => {
   return {};
 };
 
-function mapDispatchToProps(dispatch: Dispatch) {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     toRoot: () => {
-      dispatch(toRoot());
+      dispatch(toSpace());
     },
   };
-}
+};
 
 export default connect(
   mapStateToProps,

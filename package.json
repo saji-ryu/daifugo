@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/server/index.js",
-    "start:dev": "NODE_ENV=development DEBUG=main,route:*,util:*,nodemon:* nodemon",
+    "start:dev": "NODE_ENV=development DEBUG=main,connecter,route:*,util:*,nodemon:* nodemon",
     "build": "npm run build:server && npm run build:client",
     "build:server": "tsc --outDir ./dist",
     "build:client": "NODE_ENV=production node fuse",

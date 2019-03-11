@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
-import { Top, Home, Root } from "../containers";
-import io from "socket.io-client";
+import React from "react";
+import { Top, Home, Space, Room } from "../containers";
+import socket from "../utils/socket";
 
 type Props = {
   currentPageName: string;
 };
 const App = (props: Props) => {
-  const socket = io.connect(location.origin);
-  console.log(props);
   switch (props.currentPageName) {
     case "Top":
       return <Top />;
@@ -15,8 +13,10 @@ const App = (props: Props) => {
     case "Home":
       return <Home socket={socket} />;
 
-    case "Root":
-      return <Root socket={socket} />;
+    case "Space":
+      return <Space socket={socket} />;
+    case "Room":
+      return <Room />;
 
     default:
       return null;

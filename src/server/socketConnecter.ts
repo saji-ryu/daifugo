@@ -1,10 +1,17 @@
 import emitter from "./utils/eventEmitter";
 import { userData, roomData } from "./Memory";
+import { createRoom } from "./usecases";
+import _debug from "debug";
+
+const debug = _debug("connecter");
 
 const socketConnecter = (io: SocketIO.Server) => {
   io.sockets.on("connection", socket => {
-    const socektUserId = socket.request.session.userI;
+    const socektUserId = socket.request.session.userId;
+    socket.emit("user.init", userData[socektUserId]);
+    socket.emit("space.init", roomData);
     emitter.on("space.update.*", () => {
+      debug(`space updated`);
       socket.emit("space.update", roomData);
     });
     emitter.on("room.update.*", (roomId: string) => {
@@ -14,8 +21,14 @@ const socketConnecter = (io: SocketIO.Server) => {
     });
     emitter.on("user.update.*", (userId: string) => {
       if (socektUserId === userId) {
-        socket.emit("space.update", userData[userId]);
+        debug(`space updated`);
+        socket.emit("user.update", userData[userId]);
       }
+    });
+    // FIXME:型
+    socket.on("space.create.room", data => {
+      debug(`space : room created`);
+      createRoom(data);
     });
   });
 };

@@ -1,5 +1,7 @@
+import { RoomData } from "../../interfaces";
+
 export type State = {
-  rooms: Array<string> | null;
+  rooms: RoomData;
 };
 
 type Action = {

@@ -7,13 +7,13 @@ const mapStateToProps = (state: ReduxState) => {
   return {};
 };
 
-function mapDispatchToProps(dispatch: ThunkDispatch) {
+const mapDispatchToProps = (dispatch: ThunkDispatch) => {
   return {
     login: () => {
       dispatch(login());
     },
   };
-}
+};
 
 export default connect(
   mapStateToProps,

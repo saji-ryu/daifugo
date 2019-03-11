@@ -1,19 +1,17 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { Root } from "../components/pages";
+import { Room } from "../components/pages";
 import { ReduxState } from "../interfaces";
 
 const mapStateToProps = (state: ReduxState) => {
-  return {
-    rooms: state.root.rooms,
-  };
+  return {};
 };
 
-function mapDispatchToProps(dispatch: Dispatch) {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {};
-}
+};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Root);
+)(Room);
