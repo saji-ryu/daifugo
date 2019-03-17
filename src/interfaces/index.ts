@@ -13,11 +13,13 @@ type RoomId = string;
 type TableName = string;
 type TableId = string;
 type MatchId = string;
+type CurrentPage = "Top" | "Home" | "Space" | "Room" | "Table" | "Match";
 
 export type UserData = {
   [userId: string]: {
     userId: UserId;
     userName: UserName;
+    currentPage: CurrentPage;
     roomId: RoomId | null;
     tableId: TableId | null;
     matchId: MatchId | null;

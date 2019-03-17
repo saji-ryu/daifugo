@@ -1,6 +1,6 @@
 import emitter from "./utils/eventEmitter";
 import { userData, roomData } from "./Memory";
-import { createRoom } from "./usecases";
+import { createRoom, changePage } from "./usecases";
 import _debug from "debug";
 
 const debug = _debug("connecter");
@@ -21,7 +21,7 @@ const socketConnecter = (io: SocketIO.Server) => {
     });
     emitter.on("user.update.*", (userId: string) => {
       if (socektUserId === userId) {
-        debug(`space updated`);
+        debug(`user updated`);
         socket.emit("user.update", userData[userId]);
       }
     });
@@ -29,6 +29,11 @@ const socketConnecter = (io: SocketIO.Server) => {
     socket.on("space.create.room", data => {
       debug(`space : room created`);
       createRoom(data);
+    });
+
+    socket.on("user.update.pageName", data => {
+      debug(`user<${socektUserId}> : page changed to ${data.currentPage}`);
+      changePage({ userId: socektUserId, currentPage: data.currentPage });
     });
   });
 };

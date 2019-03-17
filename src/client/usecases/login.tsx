@@ -2,7 +2,7 @@ import { ThunkAction, ReduxState } from "../interfaces";
 import axios, { AxiosResponse } from "axios";
 import { SessionInfo } from "../../interfaces";
 import { toHome, toTop } from "../modules/navigation";
-import { setUserInfo, removeUserInfo } from "../modules/user";
+import { setUserInfo, removeUserInfo, changePage } from "../modules/user";
 
 const login = (): ThunkAction<ReduxState> => async (
   dispatch,
@@ -15,10 +15,12 @@ const login = (): ThunkAction<ReduxState> => async (
     await dispatch(
       setUserInfo({ userName: res.data.userName, userId: res.data.userId })
     );
-    await dispatch(toHome());
+    if (getState().user.currentPage === "Top") {
+      await dispatch(changePage("Home"));
+    }
   } else {
     await dispatch(removeUserInfo());
-    await dispatch(toTop());
+    await dispatch(changePage("Top"));
   }
 };
 

@@ -10,6 +10,7 @@ const createUser = ({ userName, userId }) => {
   userData[userId] = {
     userName,
     userId,
+    currentPage: "Top",
     roomId: null,
     tableId: null,
     matchId: null,

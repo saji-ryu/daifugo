@@ -5,7 +5,7 @@ import { ReduxState } from "../interfaces";
 
 const mapStateToProps = (state: ReduxState) => {
   return {
-    currentPageName: state.navigation.currentPage,
+    currentPageName: state.user.currentPage,
   };
 };
 

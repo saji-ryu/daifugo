@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { Home } from "../components/pages";
 import { ReduxState } from "../interfaces";
-import { toSpace } from "../modules/navigation";
+import { changePage } from "../modules/user";
 
 const mapStateToProps = (state: ReduxState) => {
   return {};
@@ -10,8 +10,8 @@ const mapStateToProps = (state: ReduxState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    toRoot: () => {
-      dispatch(toSpace());
+    toSpace: () => {
+      dispatch(changePage("Space"));
     },
   };
 };

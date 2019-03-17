@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import configureStore from "./store";
-import socketListenner from "./socketListenner";
+import configureStore from "./Redux/store";
+import SocketListenner from "./socketListenner";
+import socket from "./utils/socket";
 
 import App from "./containers/AppContainer";
 
-export const store = configureStore();
-socketListenner(store);
+const store = configureStore();
+const socketListenner = new SocketListenner(socket);
+socketListenner.init(store);
+socketListenner.listen();
 
 const Root = () => (
   <Provider store={store}>

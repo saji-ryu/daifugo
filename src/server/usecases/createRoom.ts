@@ -20,6 +20,7 @@ const createRoom = ({ roomName, isPrivate, ownerId }) => {
     tables: [],
   };
   userData[ownerId].roomId = newRoomId;
+  userData[ownerId].currentPage = "Room";
   emitter.emit("space.update.rooom_created");
   emitter.emit("user.update.roomdata", ownerId);
 };

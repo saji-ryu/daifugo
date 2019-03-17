@@ -1,5 +1,5 @@
 import { ThunkAction, ReduxState } from "../interfaces";
-import { toRoom } from "../modules/navigation";
+import { changePage } from "../modules/user";
 import socket from "../utils/socket";
 
 const createRoom = (): ThunkAction<ReduxState> => async (
@@ -11,7 +11,7 @@ const createRoom = (): ThunkAction<ReduxState> => async (
     isPrivate: false,
     ownerId: getState().user.userId,
   });
-  dispatch(toRoom());
+  dispatch(changePage("Room"));
 };
 
 export default createRoom;

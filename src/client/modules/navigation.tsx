@@ -46,8 +46,6 @@ const reducer = (state: State = initialState, action: Action): State => {
         previousPage: state.currentPage,
       });
     default:
-      console.log("first");
-      console.log(state);
       return state;
   }
 };

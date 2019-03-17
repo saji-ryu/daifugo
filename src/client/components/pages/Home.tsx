@@ -4,13 +4,13 @@ import { Socket } from "../../interfaces";
 
 type Props = {
   socket: Socket;
-  toRoot: () => void;
+  toSpace: () => void;
 };
 
 const Home = (props: Props) => (
   <Wrapper>
     <Title>{"home"}</Title>
-    <Button onClick={props.toRoot}>{"Select Rooms"}</Button>
+    <Button onClick={props.toSpace}>{"Select Rooms"}</Button>
   </Wrapper>
 );
 
