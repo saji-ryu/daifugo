@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Socket } from "../../interfaces";
 
 type Props = {
-  socket: Socket;
   toSpace: () => void;
 };
 

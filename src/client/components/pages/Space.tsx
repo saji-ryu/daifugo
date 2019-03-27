@@ -1,27 +1,27 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
-import { Socket } from "../../interfaces";
 import { RoomData } from "../../../interfaces";
+import Headder from "../parts/Headder";
 
 type Props = {
-  socket: Socket;
-  rooms: RoomData;
-  createRoom: (socket: Socket) => void;
+  pageBack: () => void;
+  rooms: Array<RoomData>;
+  createRoom: () => void;
 };
 
 const Space = (props: Props) => {
   return (
     <Wrapper>
-      <Title>{"Space"}</Title>
+      <Headder pageBack={props.pageBack} title={"Space"} />
       <RoomList>
         {props.rooms &&
-          Object.entries(props.rooms).map((ele, index) => {
-            return <RoomNode key={index}>{ele[1].roomName}</RoomNode>;
+          props.rooms.map((ele, index) => {
+            return <RoomNode key={index}>{ele.roomName}</RoomNode>;
           })}
       </RoomList>
       <Button
         onClick={() => {
-          props.createRoom(props.socket);
+          props.createRoom();
         }}
       >
         {"make room"}

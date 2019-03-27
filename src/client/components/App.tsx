@@ -11,10 +11,10 @@ const App = (props: Props) => {
       return <Top />;
 
     case "Home":
-      return <Home socket={socket} />;
+      return <Home />;
 
     case "Space":
-      return <Space socket={socket} />;
+      return <Space />;
     case "Room":
       return <Room />;
 

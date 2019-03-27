@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
-import { Socket } from "../../interfaces";
+import Headder from "../parts/Headder";
 
-type Props = {};
+type Props = {
+  pageBack: () => void;
+};
 
 const Space = (props: Props) => {
   return (
     <Wrapper>
-      <Title>{"Room"}</Title>
+      <Headder pageBack={props.pageBack} title={"Room"} />
     </Wrapper>
   );
 };
