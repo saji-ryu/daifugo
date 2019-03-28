@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { RoomData } from "../../../interfaces";
 import Headder from "../parts/Headder";
+import Form from "../parts/newRoomForm";
 
 type Props = {
   pageBack: () => void;
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const Space = (props: Props) => {
+  const [visibleForm, setVisibleForm] = useState(false);
   return (
     <Wrapper>
       <Headder pageBack={props.pageBack} title={"Space"} />
@@ -21,11 +23,19 @@ const Space = (props: Props) => {
       </RoomList>
       <Button
         onClick={() => {
-          props.createRoom();
+          setVisibleForm(true);
+          // props.createRoom();
         }}
       >
         {"make room"}
       </Button>
+      {visibleForm && (
+        <Form
+          clickCancel={() => {
+            setVisibleForm(false);
+          }}
+        />
+      )}
     </Wrapper>
   );
 };
