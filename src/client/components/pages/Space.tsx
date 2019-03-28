@@ -7,7 +7,7 @@ import Modal from "../parts/createRoomModal";
 type Props = {
   pageBack: () => void;
   rooms: Array<RoomData>;
-  createRoom: () => void;
+  createRoom: (roomName: string, isPrivate: boolean) => void;
 };
 
 const Space = (props: Props) => {
@@ -33,6 +33,9 @@ const Space = (props: Props) => {
         <Modal
           clickCancel={() => {
             setVisibleForm(false);
+          }}
+          onSubmit={(roomName, isPrivate) => {
+            props.createRoom(roomName, isPrivate);
           }}
         />
       )}

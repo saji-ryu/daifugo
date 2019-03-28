@@ -15,8 +15,8 @@ function mapDispatchToProps(dispatch: ThunkDispatch) {
     pageBack: () => {
       dispatch(changePage("Home"));
     },
-    createRoom: () => {
-      dispatch(createRoom());
+    createRoom: (roomName: string, isPrivate: boolean) => {
+      dispatch(createRoom(roomName, isPrivate));
     },
   };
 }

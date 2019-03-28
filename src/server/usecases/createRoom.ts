@@ -9,7 +9,9 @@ const createRoom = ({ roomName, isPrivate, ownerId }) => {
   if (searchResult) {
     return;
   }
-  const secretKey = isPrivate ? String(Math.random).substring(2, 4) : undefined;
+  const secretKey = isPrivate
+    ? String(Math.random()).substring(2, 6)
+    : undefined;
   const newRoomId = `r${uuidv4()}`;
   roomData[newRoomId] = {
     roomId: newRoomId,

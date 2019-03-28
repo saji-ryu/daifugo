@@ -2,13 +2,13 @@ import { ThunkAction, ReduxState } from "../interfaces";
 import { changePage } from "../modules/user";
 import socket from "../utils/socket";
 
-const createRoom = (): ThunkAction<ReduxState> => async (
-  dispatch,
-  getState
-): Promise<void> => {
+const createRoom = (
+  roomName: string,
+  isPrivate: boolean
+): ThunkAction<ReduxState> => async (dispatch, getState): Promise<void> => {
   socket.emit("space.create.room", {
-    roomName: "test",
-    isPrivate: false,
+    roomName,
+    isPrivate,
     ownerId: getState().user.userId,
   });
   dispatch(changePage("Room"));
