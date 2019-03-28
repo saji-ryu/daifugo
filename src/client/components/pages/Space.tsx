@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { RoomData } from "../../../interfaces";
 import Headder from "../parts/Headder";
-import Form from "../parts/newRoomForm";
+import Modal from "../parts/createRoomModal";
 
 type Props = {
   pageBack: () => void;
@@ -30,7 +30,7 @@ const Space = (props: Props) => {
         {"make room"}
       </Button>
       {visibleForm && (
-        <Form
+        <Modal
           clickCancel={() => {
             setVisibleForm(false);
           }}
