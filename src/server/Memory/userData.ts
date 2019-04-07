@@ -1,5 +1,5 @@
-import { UserData } from "../../interfaces";
+import { UsersData } from "../../interfaces";
 
-const userData: UserData = {};
+const userData: UsersData = {};
 
 export default userData;

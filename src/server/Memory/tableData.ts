@@ -1,5 +1,5 @@
-import { TableData } from "../../interfaces";
+import { TablesData } from "../../interfaces";
 
-const tableData: TableData = {};
+const tableData: TablesData = {};
 
 export default tableData;

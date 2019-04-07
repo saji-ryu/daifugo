@@ -15,7 +15,7 @@ type TableId = string;
 type MatchId = string;
 type CurrentPage = "Top" | "Home" | "Space" | "Room" | "Table" | "Match";
 
-export type UserData = {
+export type UsersData = {
   [userId: string]: {
     userId: UserId;
     userName: UserName;
@@ -27,17 +27,19 @@ export type UserData = {
 };
 
 export type RoomData = {
-  [rommId: string]: {
-    isPrivate: boolean;
-    secretKey?: string;
-    roomName: RoomName;
-    roomId: RoomId;
-    users: Array<UserId>;
-    tables: Array<TableId>;
-  };
+  isPrivate: boolean;
+  secretKey?: string;
+  roomName: RoomName;
+  roomId: RoomId;
+  users: Array<UserId>;
+  tables: Array<TableId>;
 };
 
-export type TableData = {
+export type RoomsData = {
+  [rommId: string]: RoomData;
+};
+
+export type TablesData = {
   [tableId: string]: {
     isPrivate: boolean;
     secretKey?: string;
@@ -49,7 +51,7 @@ export type TableData = {
   };
 };
 
-export type MatchData = {
+export type MatchsData = {
   [matchId: string]: {
     matchId: MatchId;
     roomName: RoomName;

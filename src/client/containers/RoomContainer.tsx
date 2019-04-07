@@ -1,17 +1,18 @@
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
 import { Room } from "../components/pages";
-import { ReduxState } from "../interfaces";
-import { changePage } from "../modules/user";
+import { ReduxState, ThunkDispatch } from "../interfaces";
+import { leaveRoom } from "../usecases";
 
 const mapStateToProps = (state: ReduxState) => {
-  return {};
+  return {
+    roomId: state.user.roomId,
+  };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch) => {
   return {
-    pageBack: () => {
-      dispatch(changePage("Space"));
+    leaveRoom: (roomId: string) => {
+      dispatch(leaveRoom(roomId));
     },
   };
 };

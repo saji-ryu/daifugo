@@ -8,6 +8,7 @@ type Props = {
   pageBack: () => void;
   rooms: Array<RoomData>;
   createRoom: (roomName: string, isPrivate: boolean) => void;
+  joinRoom: (roomId: string) => void;
 };
 
 const Space = (props: Props) => {
@@ -18,13 +19,21 @@ const Space = (props: Props) => {
       <RoomList>
         {props.rooms &&
           props.rooms.map((ele, index) => {
-            return <RoomNode key={index}>{ele.roomName}</RoomNode>;
+            return (
+              <RoomNode
+                onClick={() => {
+                  props.joinRoom(ele.roomId);
+                }}
+                key={index}
+              >
+                {ele.roomName}
+              </RoomNode>
+            );
           })}
       </RoomList>
       <Button
         onClick={() => {
           setVisibleForm(true);
-          // props.createRoom();
         }}
       >
         {"make room"}

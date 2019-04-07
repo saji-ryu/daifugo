@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Space } from "../components/pages";
 import { ReduxState, ThunkDispatch } from "../interfaces";
-import { createRoom } from "../usecases";
+import { createRoom, joinRoom } from "../usecases";
 import { changePage } from "../modules/user";
 
 const mapStateToProps = (state: ReduxState) => {
@@ -17,6 +17,10 @@ function mapDispatchToProps(dispatch: ThunkDispatch) {
     },
     createRoom: (roomName: string, isPrivate: boolean) => {
       dispatch(createRoom(roomName, isPrivate));
+    },
+    joinRoom: (roomId: string) => {
+      console.log(roomId);
+      dispatch(joinRoom(roomId));
     },
   };
 }

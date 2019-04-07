@@ -3,13 +3,19 @@ import styled from "@emotion/styled";
 import Headder from "../parts/Headder";
 
 type Props = {
-  pageBack: () => void;
+  leaveRoom: (roomId: string) => void;
+  roomId: string;
 };
 
 const Space = (props: Props) => {
   return (
     <Wrapper>
-      <Headder pageBack={props.pageBack} title={"Room"} />
+      <Headder
+        pageBack={() => {
+          props.leaveRoom(props.roomId);
+        }}
+        title={"Room"}
+      />
     </Wrapper>
   );
 };

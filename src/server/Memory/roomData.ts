@@ -1,5 +1,5 @@
-import { RoomData } from "../../interfaces";
+import { RoomsData } from "../../interfaces";
 
-const roomData: RoomData = {};
+const roomData: RoomsData = {};
 
 export default roomData;
