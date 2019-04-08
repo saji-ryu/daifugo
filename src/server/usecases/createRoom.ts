@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { roomData, userData } from "../Memory";
+import { roomData, spaceData, userData } from "../Memory";
 import emitter from "../utils/eventEmitter";
 
 const createRoom = ({ roomName, isPrivate, ownerId }) => {
@@ -21,10 +21,11 @@ const createRoom = ({ roomName, isPrivate, ownerId }) => {
     users: [ownerId],
     tables: [],
   };
+  spaceData.rooms.push({ roomId: newRoomId, roomName, isPrivate });
   userData[ownerId].roomId = newRoomId;
-  userData[ownerId].currentPage = "Room";
+  emitter.emit("room.update.room_created", newRoomId);
   emitter.emit("space.update.rooom_created");
-  emitter.emit("user.update.roomdata", ownerId);
+  emitter.emit("user.update.rooom_created", ownerId);
 };
 
 export default createRoom;

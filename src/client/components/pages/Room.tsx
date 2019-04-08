@@ -7,7 +7,8 @@ type Props = {
   roomId: string;
 };
 
-const Space = (props: Props) => {
+const Room = (props: Props) => {
+  console.log(props);
   return (
     <Wrapper>
       <Headder
@@ -25,4 +26,4 @@ const Wrapper = styled("div")({
 });
 const Title = styled("div")({});
 
-export default Space;
+export default Room;

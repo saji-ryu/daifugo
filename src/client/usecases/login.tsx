@@ -1,7 +1,6 @@
 import { ThunkAction, ReduxState } from "../interfaces";
 import axios, { AxiosResponse } from "axios";
 import { SessionInfo } from "../../interfaces";
-import { toHome, toTop } from "../modules/navigation";
 import { setUserInfo, removeUserInfo, changePage } from "../modules/user";
 
 const login = (): ThunkAction<ReduxState> => async (

@@ -1,15 +1,18 @@
 // Redux
-import { State as NavigationState } from "../modules/navigation";
-import { State as UserState } from "../modules/user";
-import { State as SpaceState } from "../modules/space";
-import { Action, Dispatch } from "redux";
+import { State as UserState, Action as UserAction } from "../modules/user";
+import { State as SpaceState, Action as SpaceAction } from "../modules/space";
+import { State as RoomState, Action as RoomAction } from "../modules/room";
+
+import { Dispatch } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
 export type ReduxState = {
-  navigation: NavigationState;
   user: UserState;
   space: SpaceState;
+  room: RoomState;
 };
+
+export type Action = UserAction | SpaceAction;
 
 export type Socket = SocketIOClient.Socket;
 

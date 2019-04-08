@@ -9,7 +9,7 @@ export type State = {
   matchId: string | null;
 };
 
-type Action = {
+export type Action = {
   type:
     | "daifugo/user/SET_USER_INFO"
     | "daifugo/user/REMOVE_USER_INFO"
@@ -48,10 +48,6 @@ const reducer = (state: State = initialState, action: Action): State => {
         tableId: null,
         matchId: null,
       });
-    case PAGE_CHANGE:
-      return Object.assign({}, state, action.data);
-    case ROOM_CHANGE:
-      return Object.assign({}, state, action.data);
     default:
       return state;
   }
@@ -65,6 +61,10 @@ export const setUserInfo = (
   data,
 });
 
+export const removeUserInfo = (): Action => ({
+  type: REMOVE_USER_INFO,
+});
+
 export const changePage = (pageName: PageName): Action => ({
   type: PAGE_CHANGE,
   data: { currentPage: pageName },
@@ -73,10 +73,6 @@ export const changePage = (pageName: PageName): Action => ({
 export const changeRoom = (roomId: RoomId): Action => ({
   type: ROOM_CHANGE,
   data: { roomId },
-});
-
-export const removeUserInfo = (): Action => ({
-  type: REMOVE_USER_INFO,
 });
 
 export default reducer;

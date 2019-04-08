@@ -1,21 +1,26 @@
-import { RoomData } from "../../interfaces";
-import { roomDataToMap } from "../utils/toMap";
+import { SpaceData } from "../../interfaces";
 
-export type State = {
-  rooms: Array<RoomData>;
+export type State = SpaceData;
+
+type CreateRoomData = {
+  isPrivate: boolean;
+  roomName: string;
+  ownerId: string;
 };
 
-type ActionData = {
-  [key: string]: RoomData;
-};
-
-type Action = {
-  type: "daifugo/root/SET_ROOMS_INFO";
-  data: ActionData;
-};
+export type Action =
+  | {
+      type: "daifugo/space/CREATE_ROOM";
+      data: CreateRoomData;
+    }
+  | {
+      type: "daifugo/space/SET_SPACE_INFO";
+      data: SpaceData;
+    };
 
 // action types
-const SET_ROOMS_INFO = "daifugo/root/SET_ROOMS_INFO";
+const SET_SPACE_INFO = "daifugo/space/SET_SPACE_INFO";
+const CREATE_ROOM = "daifugo/space/CREATE_ROOM";
 
 // initial state
 const initialState: State = {
@@ -25,16 +30,22 @@ const initialState: State = {
 // reducer
 const reducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
-    case SET_ROOMS_INFO:
-      return Object.assign({}, state, { rooms: roomDataToMap(action.data) });
+    case SET_SPACE_INFO:
+      return Object.assign({}, state, action.data);
     default:
       return state;
   }
 };
 
 // actions
-export const setRoomsInfo = (data: ActionData): Action => ({
-  type: SET_ROOMS_INFO,
+export const setSpaceInfo = (data: SpaceData): Action => ({
+  type: SET_SPACE_INFO,
   data,
 });
+
+export const createRoom = (data: CreateRoomData): Action => ({
+  type: CREATE_ROOM,
+  data,
+});
+
 export default reducer;

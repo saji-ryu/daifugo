@@ -1,13 +1,14 @@
 import { ThunkAction, ReduxState } from "../interfaces";
 import { changePage, changeRoom } from "../modules/user";
-import socket from "../utils/socket";
+import { removeUserFromRoom } from "../modules/room";
 
 const leaveRoom = (roomId: string): ThunkAction<ReduxState> => async (
-  dispatch
+  dispatch,
+  getState
 ): Promise<void> => {
-  socket.emit("user.update.leaveRoom", {
-    roomId,
-  });
+  await dispatch(
+    removeUserFromRoom({ roomId, userId: getState().user.userId })
+  );
   await dispatch(changeRoom(null));
   dispatch(changePage("Space"));
 };

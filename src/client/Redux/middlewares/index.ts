@@ -1,1 +1,1 @@
-export { default as socketEmitterMiddleware } from "./socketEmitter";
+export { default as socketControllerMiddleware } from "./socketController";

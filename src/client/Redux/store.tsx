@@ -1,16 +1,18 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
-import { socketEmitterMiddleware } from "./middlewares";
-import navigationReducer from "../modules/navigation";
+import { socketControllerMiddleware } from "./middlewares";
+// import navigationReducer from "../modules/navigation";
 import userReducer from "../modules/user";
 import spaceReducer from "../modules/space";
+import roomReducer from "../modules/room";
 
 const reducers = combineReducers({
-  navigation: navigationReducer,
+  // navigation: navigationReducer,
   user: userReducer,
   space: spaceReducer,
+  room: roomReducer,
 });
-const middlewares = [socketEmitterMiddleware, thunk];
+const middlewares = [thunk, socketControllerMiddleware];
 const composeEnhancers =
   // @ts-ignore
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
