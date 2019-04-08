@@ -12,7 +12,7 @@ export type ReduxState = {
   room: RoomState;
 };
 
-export type Action = UserAction | SpaceAction;
+export type Action = UserAction | SpaceAction | RoomAction;
 
 export type Socket = SocketIOClient.Socket;
 

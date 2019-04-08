@@ -14,7 +14,6 @@ const debug = _debug("connecter");
 const socketConnecter = (io: SocketIO.Server) => {
   io.sockets.on("connection", socket => {
     const socketUserId = socket.request.session.userId;
-    console.log(socketUserId);
     if (socketUserId !== undefined) {
       // 初期化
       socket.emit("user.init", userData[socketUserId]);
