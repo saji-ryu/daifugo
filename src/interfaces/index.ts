@@ -19,6 +19,11 @@ export type UsersData = {
   [userId: string]: UserData;
 };
 
+export type UserDisplayData = {
+  userId: UserId;
+  userName: UserName;
+};
+
 export type UserData = {
   userId: UserId;
   userName: UserName;
@@ -52,18 +57,16 @@ export type RoomsData = {
 };
 
 export type TableDisplayData = {
-  isPrivate: boolean;
   tableName: TableName;
   tableId: TableId;
+  users: Array<UserDisplayData>;
 };
 
 export type TableData = {
-  isPrivate: boolean;
-  secretKey?: string;
-  roomName: RoomName;
+  roomId: RoomId;
   tableName: TableName;
   tableId: TableId;
-  users: Array<UserId>;
+  users: Array<UserDisplayData>;
   match: MatchId;
 };
 
@@ -71,10 +74,12 @@ export type TablesData = {
   [tableId: string]: TableData;
 };
 
+export type MatchData = {
+  matchId: MatchId;
+  roomId: RoomId;
+  tableId: TableId;
+};
+
 export type MatchsData = {
-  [matchId: string]: {
-    matchId: MatchId;
-    roomName: RoomName;
-    tableName: TableName;
-  };
+  [matchId: string]: MatchData;
 };

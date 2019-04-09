@@ -5,12 +5,16 @@ import { socketControllerMiddleware } from "./middlewares";
 import userReducer from "../modules/user";
 import spaceReducer from "../modules/space";
 import roomReducer from "../modules/room";
+import tableReducer from "../modules/table";
+import matchReducer from "../modules/match";
 
 const reducers = combineReducers({
   // navigation: navigationReducer,
   user: userReducer,
   space: spaceReducer,
   room: roomReducer,
+  table: tableReducer,
+  match: matchReducer,
 });
 const middlewares = [thunk, socketControllerMiddleware];
 const composeEnhancers =

@@ -2,24 +2,9 @@ import { Store } from "redux";
 import { setUserInfo } from "./modules/user";
 import { setSpaceInfo } from "./modules/space";
 import { setRoomInfo } from "./modules/room";
+import { setTableInfo } from "./modules/table";
 import { Socket } from "./interfaces";
-import { SpaceData, UserData, RoomData } from "../interfaces";
-
-// const socketListenner = (store: Store) => {
-//   socket.on("user.init", userData => {
-//     store.dispatch(setUserInfo(userData));
-//   });
-//   socket.on("space.init", roomData => {
-//     store.dispatch(setRoomsInfo(roomData));
-//   });
-//   socket.on("space.update", roomData => {
-//     store.dispatch(setRoomsInfo(roomData));
-//   });
-//   socket.on("user.update", userData => {
-//     console.log(userData);
-//     store.dispatch(setUserInfo(userData));
-//   });
-// };
+import { SpaceData, UserData, RoomData, TableData } from "../interfaces";
 
 export default class SocketListener {
   socket: Socket;
@@ -37,6 +22,12 @@ export default class SocketListener {
     });
     this.socket.on("space.init", (spaceData: SpaceData) => {
       this.store.dispatch(setSpaceInfo(spaceData));
+    });
+    this.socket.on("room.init", (roomData: RoomData) => {
+      this.store.dispatch(setRoomInfo(roomData));
+    });
+    this.socket.on("table.update", (tableData: TableData) => {
+      this.store.dispatch(setTableInfo(tableData));
     });
     this.socket.on("room.update", (roomData: RoomData) => {
       this.store.dispatch(setRoomInfo(roomData));

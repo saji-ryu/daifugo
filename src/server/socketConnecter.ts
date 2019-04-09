@@ -2,6 +2,7 @@ import emitter from "./utils/eventEmitter";
 import { userData, roomData, spaceData } from "./Memory";
 import {
   createRoom,
+  createTable,
   changePage,
   changeRoom,
   addUserToRoom,
@@ -16,8 +17,13 @@ const socketConnecter = (io: SocketIO.Server) => {
     const socketUserId = socket.request.session.userId;
     if (socketUserId !== undefined) {
       // 初期化
-      socket.emit("user.init", userData[socketUserId]);
       socket.emit("space.init", spaceData);
+      if (userData[socketUserId]) {
+        socket.emit("user.init", userData[socketUserId]);
+        if (userData[socketUserId].roomId) {
+          socket.emit("room.init", roomData[userData[socketUserId].roomId]);
+        }
+      }
 
       // 内部による変更
       emitter.on("space.update.*", () => {
@@ -42,14 +48,17 @@ const socketConnecter = (io: SocketIO.Server) => {
 
       // clientからのaction
       // FIXME: data型
-      // TODO: userIdの称号いるんじゃね問題
+      // TODO: userIdの照合いるんじゃね問題
       socket.on("daifugo/space/CREATE_ROOM", data => {
         createRoom(data);
       });
-      socket.on("daifugo/space/ADD_USER_TO_ROOM", data => {
+      socket.on("daifugo/room/CREATE_TABLE", data => {
+        createTable(data);
+      });
+      socket.on("daifugo/room/ADD_USER_TO_ROOM", data => {
         addUserToRoom(data);
       });
-      socket.on("daifugo/space/REMOVE_USER_FROM_ROOM", data => {
+      socket.on("daifugo/room/REMOVE_USER_FROM_ROOM", data => {
         removeUserFromRoom(data);
       });
       socket.on("daifugo/user/PAGE_CHANGE", data => {
