@@ -27,7 +27,7 @@ const Component = (props: Props) => {
             <input
               type={"radio"}
               name={"isPrivate"}
-              defaultChecked={true}
+              defaultChecked
               onChange={() => {
                 setIsPrivate(false);
               }}
