@@ -3,7 +3,7 @@ import passport from "passport";
 import _debug from "debug";
 
 const router = express.Router();
-const debug = _debug("route:auth");
+const debug = _debug("server:route:auth");
 
 router.get("/twitter", passport.authenticate("twitter"));
 

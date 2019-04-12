@@ -48,7 +48,7 @@ export type RoomData = {
   secretKey?: string;
   roomName: RoomName;
   roomId: RoomId;
-  users: Array<UserId>;
+  users: Array<UserDisplayData>;
   tables: Array<TableDisplayData>;
 };
 
@@ -67,7 +67,7 @@ export type TableData = {
   tableName: TableName;
   tableId: TableId;
   users: Array<UserDisplayData>;
-  match: MatchId;
+  match: MatchId | null;
 };
 
 export type TablesData = {
@@ -78,8 +78,21 @@ export type MatchData = {
   matchId: MatchId;
   roomId: RoomId;
   tableId: TableId;
+  users: Array<UserDisplayData>;
 };
 
 export type MatchsData = {
   [matchId: string]: MatchData;
+};
+
+export type ArgTypes = {
+  isPrivate?: boolean;
+  userId?: UserId;
+  ownerId?: UserId;
+  userName?: UserName;
+  roomName?: RoomName;
+  roomId?: RoomId;
+  tableName?: TableName;
+  tableId?: TableId;
+  currentPage?: CurrentPage;
 };

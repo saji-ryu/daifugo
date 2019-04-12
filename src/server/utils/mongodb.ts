@@ -1,7 +1,7 @@
 import { MongoClient, Db, Collection } from "mongodb";
 import _debug from "debug";
 
-const debug = _debug("util:mongo");
+const debug = _debug("server:util:mongo");
 const url: string = process.env.MONGODB_URI || "mongodb://localhost/yurucomi";
 let db: Db;
 

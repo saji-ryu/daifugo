@@ -5,7 +5,7 @@ import { SessionInfo } from "../../interfaces";
 import createUser from "../usecases/createUser";
 
 const router = express.Router();
-const debug = _debug("route:session");
+const debug = _debug("server:route:session");
 
 router.get("/", (req, res) => {
   if (req.session) {

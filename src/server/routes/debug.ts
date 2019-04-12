@@ -4,7 +4,7 @@ import _debug from "debug";
 import { userData, roomData, tableData, spaceData } from "../Memory";
 
 const router = express.Router();
-const debug = _debug("route:debug");
+const debug = _debug("server:route:debug");
 
 router.get("/user", (req, res) => {
   res.send(userData);

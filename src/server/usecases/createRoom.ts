@@ -1,8 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 import { roomData, spaceData, userData } from "../Memory";
 import emitter from "../utils/eventEmitter";
+import { ArgTypes } from "../../interfaces";
+import { getUserName } from "../selectors";
 
-const createRoom = ({ roomName, isPrivate, ownerId }) => {
+const createRoom = ({ roomName, isPrivate, ownerId }: ArgTypes) => {
   const searchResult = Object.entries(roomData).find(ele => {
     return ele[1].roomName === roomName;
   });
@@ -18,7 +20,7 @@ const createRoom = ({ roomName, isPrivate, ownerId }) => {
     isPrivate,
     secretKey,
     roomName,
-    users: [ownerId],
+    users: [{ userId: ownerId, userName: getUserName(ownerId) }],
     tables: [],
   };
   spaceData.rooms.push({ roomId: newRoomId, roomName, isPrivate });

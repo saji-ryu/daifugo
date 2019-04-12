@@ -14,6 +14,7 @@ export default class SocketListener {
   }
   init(store: Store) {
     this.store = store;
+    this.socket.emit("");
   }
 
   listen() {

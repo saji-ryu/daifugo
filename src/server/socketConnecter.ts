@@ -10,7 +10,7 @@ import {
 } from "./usecases";
 import _debug from "debug";
 
-const debug = _debug("connecter");
+const debug_action = _debug("server:connecter:action");
 
 const socketConnecter = (io: SocketIO.Server) => {
   io.sockets.on("connection", socket => {
@@ -27,13 +27,13 @@ const socketConnecter = (io: SocketIO.Server) => {
 
       // 内部による変更
       emitter.on("space.update.*", () => {
-        debug(`space updated`);
         socket.emit("space.update", spaceData);
       });
       emitter.on("room.update.*", (roomId: string) => {
         if (roomData[roomId]) {
           if (
-            roomData[roomId].users.find(ele => ele === socketUserId).length > 0
+            roomData[roomId].users.filter(ele => ele.userId === socketUserId)
+              .length > 0
           ) {
             socket.emit("room.update", roomData[roomId]);
           }
@@ -41,7 +41,6 @@ const socketConnecter = (io: SocketIO.Server) => {
       });
       emitter.on("user.update.*", (userId: string) => {
         if (socketUserId === userId) {
-          debug(`user updated`);
           socket.emit("user.update", userData[userId]);
         }
       });
@@ -50,15 +49,19 @@ const socketConnecter = (io: SocketIO.Server) => {
       // FIXME: data型
       // TODO: userIdの照合いるんじゃね問題
       socket.on("daifugo/space/CREATE_ROOM", data => {
+        debug_action("daifugo/space/CREATE_ROOM", data);
         createRoom(data);
       });
       socket.on("daifugo/room/CREATE_TABLE", data => {
+        debug_action("daifugo/room/CREATE_TABLE", data);
         createTable(data);
       });
       socket.on("daifugo/room/ADD_USER_TO_ROOM", data => {
+        debug_action("daifugo/room/ADD_USER_TO_ROOM", data);
         addUserToRoom(data);
       });
       socket.on("daifugo/room/REMOVE_USER_FROM_ROOM", data => {
+        debug_action("daifugo/room/REMOVE_USER_FROM_ROOM", data);
         removeUserFromRoom(data);
       });
       socket.on("daifugo/user/PAGE_CHANGE", data => {

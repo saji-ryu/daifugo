@@ -15,7 +15,7 @@ import socketConnecter from "./socketConnecter";
 import _debug from "debug";
 import session from "express-session";
 
-const debug = _debug("main");
+const debug = _debug("server:main");
 dotenv.load();
 
 const PORT: number = Number(process.env.PORT) || 3001;

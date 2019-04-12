@@ -2,8 +2,9 @@ import { v4 as uuidv4 } from "uuid";
 import { roomData, tableData, userData } from "../Memory";
 import { getUserName } from "../selectors";
 import emitter from "../utils/eventEmitter";
+import { ArgTypes } from "../../interfaces";
 
-const createTable = ({ roomId, tableName, ownerId }) => {
+const createTable = ({ roomId, tableName, ownerId }: ArgTypes) => {
   const searchResult = Object.entries(tableData).find(ele => {
     return ele[1].tableName === tableName;
   });
@@ -22,7 +23,7 @@ const createTable = ({ roomId, tableName, ownerId }) => {
   roomData[roomId].tables.push({
     tableId: newTableId,
     tableName,
-    users: [ownerId],
+    users: [{ userId: ownerId, userName: getUserName(ownerId) }],
   });
   emitter.emit("room.update.table_created", roomId);
   emitter.emit("user.update.table_created", ownerId);

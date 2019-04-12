@@ -1,6 +1,7 @@
 import { userData } from "../Memory";
+import { ArgTypes } from "../../interfaces";
 
-const createUser = ({ userName, userId }) => {
+const createUser = ({ userName, userId }: ArgTypes) => {
   const searchResult = Object.entries(userData).find(ele => {
     return ele[1].userName === userName;
   });
