@@ -1,6 +1,6 @@
-import { RoomData } from "../../interfaces";
+import { ClientRoomData } from "../../interfaces";
 
-export type State = RoomData | {};
+export type State = ClientRoomData | {};
 
 type AddUserData = {
   userId: string;
@@ -18,7 +18,7 @@ type RemoveUserData = AddUserData;
 export type Action =
   | {
       type: "daifugo/room/SET_ROOM_INFO";
-      data: RoomData;
+      data: ClientRoomData;
     }
   | {
       type: "daifugo/room/REMOVE_USER_FROM_ROOM";
@@ -52,7 +52,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 };
 
 // actions
-export const setRoomInfo = (data: RoomData): Action => ({
+export const setRoomInfo = (data: ClientRoomData): Action => ({
   type: SET_ROOM_INFO,
   data,
 });

@@ -2,6 +2,7 @@
 import { State as UserState, Action as UserAction } from "../modules/user";
 import { State as SpaceState, Action as SpaceAction } from "../modules/space";
 import { State as RoomState, Action as RoomAction } from "../modules/room";
+import { State as TableState, Action as TableAction } from "../modules/table";
 
 import { Dispatch } from "redux";
 import { ThunkDispatch } from "redux-thunk";
@@ -10,9 +11,10 @@ export type ReduxState = {
   user: UserState;
   space: SpaceState;
   room: RoomState;
+  table: TableState;
 };
 
-export type Action = UserAction | SpaceAction | RoomAction;
+export type Action = UserAction | SpaceAction | RoomAction | TableAction;
 
 export type Socket = SocketIOClient.Socket;
 

@@ -1,5 +1,5 @@
 import { ThunkAction, ReduxState } from "../interfaces";
-import { changePage, changeRoom } from "../modules/user";
+import { changePage, setRoomId } from "../modules/user";
 import { addUserToRoom } from "../modules/room";
 
 const joinRoom = (roomId: string): ThunkAction<ReduxState> => async (
@@ -7,7 +7,7 @@ const joinRoom = (roomId: string): ThunkAction<ReduxState> => async (
   getState
 ): Promise<void> => {
   await dispatch(addUserToRoom({ roomId, userId: getState().user.userId }));
-  await dispatch(changeRoom(roomId));
+  await dispatch(setRoomId(roomId));
   dispatch(changePage("Room"));
 };
 

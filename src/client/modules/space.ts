@@ -1,6 +1,6 @@
-import { SpaceData } from "../../interfaces";
+import { ClientSpaceData } from "../../interfaces";
 
-export type State = SpaceData;
+export type State = ClientSpaceData;
 
 type CreateRoomData = {
   isPrivate: boolean;
@@ -15,7 +15,7 @@ export type Action =
     }
   | {
       type: "daifugo/space/SET_SPACE_INFO";
-      data: SpaceData;
+      data: ClientSpaceData;
     };
 
 // action types
@@ -38,7 +38,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 };
 
 // actions
-export const setSpaceInfo = (data: SpaceData): Action => ({
+export const setSpaceInfo = (data: ClientSpaceData): Action => ({
   type: SET_SPACE_INFO,
   data,
 });

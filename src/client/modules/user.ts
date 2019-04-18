@@ -1,5 +1,7 @@
 type PageName = "Top" | "Home" | "Space" | "Room" | "Table" | "Match";
 type RoomId = string;
+type TableId = string;
+
 export type State = {
   userName: string | null;
   userId: string | null;
@@ -14,7 +16,8 @@ export type Action = {
     | "daifugo/user/SET_USER_INFO"
     | "daifugo/user/REMOVE_USER_INFO"
     | "daifugo/user/PAGE_CHANGE"
-    | "daifugo/user/ROOM_CHANGE";
+    | "daifugo/user/SET_ROOM_ID"
+    | "daifugo/user/SET_TABLE_ID";
   data?: { [K in keyof State]?: State[K] };
 };
 
@@ -22,7 +25,8 @@ export type Action = {
 const SET_USER_INFO = "daifugo/user/SET_USER_INFO";
 const REMOVE_USER_INFO = "daifugo/user/REMOVE_USER_INFO";
 const PAGE_CHANGE = "daifugo/user/PAGE_CHANGE";
-const ROOM_CHANGE = "daifugo/user/ROOM_CHANGE";
+const SET_ROOM_ID = "daifugo/user/SET_ROOM_ID";
+const SET_TABLE_ID = "daifugo/user/SET_TABLE_ID";
 
 // initial state
 const initialState: State = {
@@ -70,9 +74,14 @@ export const changePage = (pageName: PageName): Action => ({
   data: { currentPage: pageName },
 });
 
-export const changeRoom = (roomId: RoomId): Action => ({
-  type: ROOM_CHANGE,
+export const setRoomId = (roomId: RoomId): Action => ({
+  type: SET_ROOM_ID,
   data: { roomId },
+});
+
+export const setTableId = (tableId: TableId): Action => ({
+  type: SET_TABLE_ID,
+  data: { tableId },
 });
 
 export default reducer;

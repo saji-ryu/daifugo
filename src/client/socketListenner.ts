@@ -4,7 +4,12 @@ import { setSpaceInfo } from "./modules/space";
 import { setRoomInfo } from "./modules/room";
 import { setTableInfo } from "./modules/table";
 import { Socket } from "./interfaces";
-import { SpaceData, UserData, RoomData, TableData } from "../interfaces";
+import {
+  ClientSpaceData,
+  ClientUserData,
+  ClientRoomData,
+  ClientTableData,
+} from "../interfaces";
 
 export default class SocketListener {
   socket: Socket;
@@ -18,25 +23,28 @@ export default class SocketListener {
   }
 
   listen() {
-    this.socket.on("user.init", (userData: UserData) => {
+    this.socket.on("user.init", (userData: ClientUserData) => {
       this.store.dispatch(setUserInfo(userData));
     });
-    this.socket.on("space.init", (spaceData: SpaceData) => {
+    this.socket.on("space.init", (spaceData: ClientSpaceData) => {
       this.store.dispatch(setSpaceInfo(spaceData));
     });
-    this.socket.on("room.init", (roomData: RoomData) => {
+    this.socket.on("room.init", (roomData: ClientRoomData) => {
       this.store.dispatch(setRoomInfo(roomData));
     });
-    this.socket.on("table.update", (tableData: TableData) => {
+    this.socket.on("table.init", (tableData: ClientTableData) => {
       this.store.dispatch(setTableInfo(tableData));
     });
-    this.socket.on("room.update", (roomData: RoomData) => {
+    this.socket.on("table.update", (tableData: ClientTableData) => {
+      this.store.dispatch(setTableInfo(tableData));
+    });
+    this.socket.on("room.update", (roomData: ClientRoomData) => {
       this.store.dispatch(setRoomInfo(roomData));
     });
-    this.socket.on("space.update", (spaceData: SpaceData) => {
+    this.socket.on("space.update", (spaceData: ClientSpaceData) => {
       this.store.dispatch(setSpaceInfo(spaceData));
     });
-    this.socket.on("user.update", (userData: UserData) => {
+    this.socket.on("user.update", (userData: ClientUserData) => {
       this.store.dispatch(setUserInfo(userData));
     });
   }

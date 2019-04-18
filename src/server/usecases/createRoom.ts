@@ -1,8 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
-import { roomData, spaceData, userData } from "../Memory";
+import { roomData, userData } from "../Memory";
 import emitter from "../utils/eventEmitter";
 import { ArgTypes } from "../../interfaces";
-import { getUserName } from "../selectors";
 
 const createRoom = ({ roomName, isPrivate, ownerId }: ArgTypes) => {
   const searchResult = Object.entries(roomData).find(ele => {
@@ -20,13 +19,12 @@ const createRoom = ({ roomName, isPrivate, ownerId }: ArgTypes) => {
     isPrivate,
     secretKey,
     roomName,
-    users: [{ userId: ownerId, userName: getUserName(ownerId) }],
+    users: [ownerId],
     tables: [],
   };
-  spaceData.rooms.push({ roomId: newRoomId, roomName, isPrivate });
   userData[ownerId].roomId = newRoomId;
+  emitter.emit("space.update.room_created");
   emitter.emit("room.update.room_created", newRoomId);
-  emitter.emit("space.update.rooom_created");
   emitter.emit("user.update.rooom_created", ownerId);
 };
 

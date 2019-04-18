@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
 import { roomData, tableData, userData } from "../Memory";
-import { getUserName } from "../selectors";
 import emitter from "../utils/eventEmitter";
 import { ArgTypes } from "../../interfaces";
 
@@ -16,15 +15,11 @@ const createTable = ({ roomId, tableName, ownerId }: ArgTypes) => {
     tableId: newTableId,
     roomId,
     tableName,
-    users: [{ userId: ownerId, userName: getUserName(ownerId) }],
+    users: [ownerId],
     match: "",
   };
   userData[ownerId].tableId = newTableId;
-  roomData[roomId].tables.push({
-    tableId: newTableId,
-    tableName,
-    users: [{ userId: ownerId, userName: getUserName(ownerId) }],
-  });
+  roomData[roomId].tables.push(newTableId);
   emitter.emit("room.update.table_created", roomId);
   emitter.emit("user.update.table_created", ownerId);
   emitter.emit("table.update.table_created", newTableId);

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { RoomData } from "../../../interfaces";
+import { RoomDisplayData } from "../../../interfaces";
 import Headder from "../parts/Headder";
 import Modal from "../parts/createRoomModal";
 
 type Props = {
   pageBack: () => void;
-  rooms: Array<RoomData>;
+  rooms: Array<RoomDisplayData>;
   createRoom: (roomName: string, isPrivate: boolean) => void;
   joinRoom: (roomId: string) => void;
 };

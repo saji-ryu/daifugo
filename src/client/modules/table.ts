@@ -1,6 +1,6 @@
-import { TableData } from "../../interfaces";
+import { ClientTableData } from "../../interfaces";
 
-export type State = TableData | {};
+export type State = ClientTableData | {};
 
 type AddUserData = {
   userId: string;
@@ -12,7 +12,7 @@ type RemoveUserData = AddUserData;
 export type Action =
   | {
       type: "daifugo/table/SET_TABLE_INFO";
-      data: TableData;
+      data: ClientTableData;
     }
   | {
       type: "daifugo/table/REMOVE_USER_FROM_TABLE";
@@ -44,7 +44,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 };
 
 // actions
-export const setTableInfo = (data: TableData): Action => ({
+export const setTableInfo = (data: ClientTableData): Action => ({
   type: SET_TABLE_INFO,
   data,
 });

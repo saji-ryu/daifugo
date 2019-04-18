@@ -1,11 +1,11 @@
-import { MatchData } from "../../interfaces";
+import { ClientMatchData } from "../../interfaces";
 
-export type State = MatchData | {};
+export type State = ClientMatchData | {};
 
 export type Action =
   | {
       type: "daifugo/match/SET_MATCH_INFO";
-      data: MatchData;
+      data: ClientMatchData;
     }
   | {
       type: "daifugo/match/REMOVE_MATCH_INFO";
@@ -31,7 +31,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 };
 
 // actions
-export const setMatchInfo = (data: MatchData): Action => ({
+export const setMatchInfo = (data: ClientMatchData): Action => ({
   type: SET_MATCH_INFO,
   data,
 });
